@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Knowledge - Herbal Life</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .knowledge-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .category-section {
+            margin-bottom: 3rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #4CAF50;
+        }
+
+        .category-header h2 {
+            font-size: 1.8rem;
+            color: #2E7D32;
+            font-weight: 600;
+        }
+
+        .category-icon {
+            background: #4CAF50;
+            padding: 10px;
+            border-radius: 50%;
+            color: white;
+        }
+
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            align-items: stretch;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 300px;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .article-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            position: relative;
+        }
+
+        .article-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #E8F5E9;
+            color: #2E7D32;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .article-title {
+            font-size: 1.4rem;
+            color: #1B5E20;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            line-height: 1.4;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+            max-height: 2.8em;
+        }
+
+        .article-desc {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+            max-height: 4.8em;
+        }
+
+        .article-meta {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #666;
+            font-size: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #E8F5E9;
+            position: relative;
+            background: white;
+        }
+
+        .read-more {
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .read-more:hover {
+            background: #2E7D32;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="https://cdn-icons-png.flaticon.com/512/2515/2515183.png" alt="Herbal Life Logo" class="logo">
+            <h1>Herbal Life</h1>
+        </div>
+        <div class="nav-container">
+            <div class="language-selector">
+                <button class="language-btn">
+                    <svg viewBox="0 0 24 24" width="18" height="18">
+                        <path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/>
+                    </svg>
+                    <span class="current-lang">English</span>
+                    <svg class="arrow-icon" viewBox="0 0 24 24" width="18" height="18">
+                        <path fill="currentColor" d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </button>
+                <div class="language-dropdown">
+                    <a href="?lang=zh" class="lang-option">
+                        <span class="lang-name">Chinese</span>
+                        <span class="lang-code">ZH</span>
+                    </a>
+                    <a href="?lang=en" class="lang-option active">
+                        <span class="lang-name">English</span>
+                        <span class="lang-code">EN</span>
+                    </a>
+                    <a href="?lang=ms" class="lang-option">
+                        <span class="lang-name">Malay</span>
+                        <span class="lang-code">MS</span>
+                    </a>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="personalized.html">Personalized Plan</a></li>
+                    <li><a href="./herbs.html">Herbal Guide</a></li>
+                    <li><a href="health_knowledge.html" class="active">Health Knowledge</a></li>
+                    <li><a href="./health_tracking.html">Health Tracking</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="search-container">
+            <div class="gcse-search"></div>
+        </div>
+    </header>
+
+    <main class="knowledge-container">
+        <!-- 饮食养生部分 -->
+        <section class="category-section">
+            <div class="category-header">
+                <svg class="category-icon" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="currentColor" d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/>
+                </svg>
+                <h2>Daily Health</h2>
+            </div>
+            <div class="article-grid">
+                <article class="article-card">
+                    <div class="article-content">
+                        <span class="article-tag">Dietary Health</span>
+                        <h3 class="article-title">Seasonal Dietary Guide</h3>
+                        <p class="article-desc">Adjust diet according to seasonal characteristics for health maintenance...</p>
+                        <div class="article-meta">
+                            <span class="date">2024-01-20</span>
+                            <a href="articles/seasonal-diet.html" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-content">
+                        <span class="article-tag">Medicinal Diet</span>
+                        <h3 class="article-title">Medicinal Soup Recipes</h3>
+                        <p class="article-desc">Traditional medicinal soup preparation methods and benefits...</p>
+                        <div class="article-meta">
+                            <span class="date">2024-01-18</span>
+                            <a href="articles/medicinal-soup.html" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 其他饮食养生文章 -->
+            </div>
+        </section>
+
+        <!-- 运动养生部分 -->
+        <section class="category-section">
+            <div class="category-header">
+                <svg class="category-icon" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="currentColor" d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/>
+                </svg>
+                <h2>Exercise & Health</h2>
+            </div>
+            <div class="article-grid">
+                <article class="article-card">
+                    <div class="article-content">
+                        <span class="article-tag">Traditional Exercise</span>
+                        <h3 class="article-title">Tai Chi Basics</h3>
+                        <p class="article-desc">Basic Tai Chi movements and practice methods...</p>
+                        <div class="article-meta">
+                            <span class="date">2024-01-15</span>
+                            <a href="articles/taichi-basics.html" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-content">
+                        <span class="article-tag">Fitness Guide</span>
+                        <h3 class="article-title">Scientific Fitness Guide</h3>
+                        <p class="article-desc">Exercise plans for different age groups...</p>
+                        <div class="article-meta">
+                            <span class="date">2024-01-16</span>
+                            <a href="articles/fitness-exercise.html" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-content">
+                        <span class="article-tag">Meridian Health</span>
+                        <h3 class="article-title">Meridian Tapping Therapy</h3>
+                        <p class="article-desc">Promote qi and blood circulation through meridian tapping...</p>
+                        <div class="article-meta">
+                            <span class="date">2024-01-19</span>
+                            <a href="articles/meridian-exercise.html" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-content">
+                        <span class="article-tag">Qigong</span>
+                        <h3 class="article-title">Qigong Basics</h3>
+                        <p class="article-desc">Basic concepts and practice methods of Qigong...</p>
+                        <div class="article-meta">
+                            <span class="date">2024-01-21</span>
+                            <a href="articles/qigong-basics.html" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 常见问题解答部分 -->
+        <section class="category-section">
+            <div class="category-header">
+                <svg class="category-icon" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+                </svg>
+                <h2>Health Management</h2>
+            </div>
+            <div class="article-grid">
+                <article class="article-card">
+                    <div class="article-content">
+                        <span class="article-tag">Sleep Management</span>
+                        <h3 class="article-title">Sleep Quality Improvement Guide</h3>
+                        <p class="article-desc">Methods and suggestions for improving sleep quality...</p>
+                        <div class="article-meta">
+                            <span class="date">2024-01-23</span>
+                            <a href="articles/sleep-faq.html" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-content">
+                        <span class="article-tag">Seasonal Health</span>
+                        <h3 class="article-title">Seasonal Transition Health Tips</h3>
+                        <p class="article-desc">Key health points during seasonal changes...</p>
+                        <div class="article-meta">
+                            <span class="date">2024-01-17</span>
+                            <a href="articles/season-transition.html" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-content">
+                        <span class="article-tag">Sub-Health</span>
+                        <h3 class="article-title">Sub-Health Adjustment Methods</h3>
+                        <p class="article-desc">Sub-Health manifestations and adjustment methods, improving quality of life...</p>
+                        <div class="article-meta">
+                            <span class="date">2024-01-22</span>
+                            <a href="articles/sub-health.html" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-content">
+                        <span class="article-tag">Daily Health</span>
+                        <h3 class="article-title">Daily Health Q&A</h3>
+                        <p class="article-desc">Common health questions and answers, scientific health knowledge popularization...</p>
+                        <div class="article-meta">
+                            <span class="date">2024-01-24</span>
+                            <a href="articles/daily-health.html" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+</body>
+</html> 

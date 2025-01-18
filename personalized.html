@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Health Plan - Herbal Life</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+        .page-title {
+            text-align: center;
+            color: #2e7d32;
+            margin: 30px 0;
+            font-size: 24px;
+        }
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .form-group select[multiple] {
+            height: auto;
+        }
+        .generate-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .generate-btn:hover {
+            background-color: #45a049;
+        }
+        .recommendations {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .section h3 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .point-list {
+            margin: 5px 0;
+        }
+        .point-list div {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            color: #333;
+        }
+        .point-list div:before {
+            content: "•";
+            position: absolute;
+            left: 5px;
+            color: #4caf50;
+        }
+        .highlight-bg {
+            background-color: #e8f5e9;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="https://cdn-icons-png.flaticon.com/512/2515/2515183.png" alt="Herbal Life Logo" class="logo">
+            <h1>Herbal Life</h1>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="personalized.html">Personalized Plan</a>
+            <a href="herbs.html">Herbal Guide</a>
+            <a href="health_knowledge.html">Health Knowledge</a>
+            <a href="health_tracking.html">Health Tracking</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2 class="page-title">Personalized Health Plan</h2>
+
+        <div class="form-container">
+            <div class="form-group">
+                <label>Age Range</label>
+                <select>
+                    <option value="">Select your age range</option>
+                    <option>18-25 years</option>
+                    <option>26-35 years</option>
+                    <option>36-45 years</option>
+                    <option>46-55 years</option>
+                    <option>56-65 years</option>
+                    <option>Above 65 years</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Gender</label>
+                <select>
+                    <option value="">Select your gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Sleep Quality</label>
+                <select>
+                    <option value="">Select sleep quality</option>
+                    <option>Good</option>
+                    <option>Fair</option>
+                    <option>Poor</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Dietary Habits</label>
+                <select>
+                    <option value="">Select dietary habits</option>
+                    <option>Balanced diet</option>
+                    <option>Mostly vegetarian</option>
+                    <option>Mostly meat</option>
+                    <option>Irregular eating habits</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Health Conditions (Hold Ctrl to select multiple)</label>
+                <select multiple>
+                    <option>No specific issues</option>
+                    <option>Hypertension</option>
+                    <option>Diabetes</option>
+                    <option>Insomnia</option>
+                    <option>Joint pain</option>
+                    <option>Digestive issues</option>
+                    <option>Stress and anxiety</option>
+                    <option>Fatigue</option>
+                    <option>Weight management</option>
+                </select>
+            </div>
+
+            <button class="generate-btn">Generate Personalized Plan</button>
+        </div>
+
+        <div class="recommendations" id="recommendations" style="display: none;">
+            <h2 class="page-title">Your Personalized Health Recommendations</h2>
+
+            <div class="section">
+                <h3>Dietary Guidelines</h3>
+                <div class="point-list">
+                    <div>Based on your condition, follow these guidelines:</div>
+                    <div>Control portion sizes, do not exceed one bowl per meal</div>
+                    <div>Include more aromatic foods like ginger and black pepper</div>
+                    <div>Use seasonal fresh ingredients for balanced nutrition</div>
+                    <div>Focus on protein-rich foods: lean meat, fish, legumes</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Exercise Recommendations</h3>
+                <div class="point-list">
+                    <div>Exercise guidelines:</div>
+                    <div>30-60 minutes of moderate exercise daily</div>
+                    <div>Activities: walking, swimming, tai chi</div>
+                    <div>Always warm up before exercise</div>
+                    <div>Exercise gently, avoid overexertion</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Lifestyle Habits</h3>
+                <div class="point-list">
+                    <div>Daily recommendations:</div>
+                    <div>Get 7-8 hours of quality sleep</div>
+                    <div>Regular outdoor activities and sunlight exposure</div>
+                    <div>Practice emotional balance and stress management</div>
+                </div>
+            </div>
+
+            <div class="highlight-bg">
+                <h3>Related Resources</h3>
+                <div class="point-list">
+                    <div><a href="#" class="more-articles">Professional Health Articles ↗</a></div>
+                    <div>Browse our comprehensive health database for related content</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.querySelector('.generate-btn').addEventListener('click', function() {
+            document.getElementById('recommendations').style.display = 'block';
+            document.getElementById('recommendations').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    </script>
+
+    <script src="js/translations.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

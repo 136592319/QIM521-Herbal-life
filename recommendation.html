@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个性化养生建议 - Herbal Life</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .recommendation-container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 3rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .recommendation-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .recommendation-header h2 {
+            color: #2E7D32;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .recommendation-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .recommendation-section {
+            margin-bottom: 2.5rem;
+            padding: 2rem;
+            background: #F1F8E9;
+            border-radius: 12px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .recommendation-section h3 {
+            color: #2E7D32;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        .recommendation-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .recommendation-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .recommendation-item h4 {
+            color: #1B5E20;
+            margin-bottom: 0.5rem;
+        }
+
+        .recommendation-item p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .references {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #E8F5E9;
+        }
+
+        .references h3 {
+            color: #2E7D32;
+            margin-bottom: 1rem;
+        }
+
+        .references a {
+            color: #43A047;
+            text-decoration: none;
+            display: block;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: #F9FBE7;
+            border-radius: 4px;
+        }
+
+        .references a:hover {
+            background: #F1F8E9;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #388E3C;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- ... header部分与其他页面相同 ... -->
+
+    <main>
+        <div class="recommendation-container">
+            <div class="recommendation-header">
+                <h2>您的个性化养生方案</h2>
+                <p>根据您提供的信息，我们为您定制了以下养生建议</p>
+            </div>
+
+            <div id="recommendationContent">
+                <!-- 建议内容将通过 JavaScript 动态生成 -->
+            </div>
+
+            <a href="personalized.html" class="back-btn">返回修改</a>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 从 localStorage 获取数据
+            const formData = JSON.parse(localStorage.getItem('personalizedData'));
+            if (!formData) {
+                window.location.href = 'personalized.html';
+                return;
+            }
+
+            const content = document.getElementById('recommendationContent');
+            content.innerHTML = generateRecommendations(formData);
+        });
+
+        function generateRecommendations(data) {
+            let html = '';
+
+            // 基础建议部分
+            html += `
+                <div class="recommendation-section">
+                    <h3>基础养生建议</h3>
+                    <div class="recommendation-list">
+                        ${generateBasicRecommendations(data)}
+                    </div>
+                </div>
+            `;
+
+            // 针对性建议部分
+            html += `
+                <div class="recommendation-section">
+                    <h3>针对性调理建议</h3>
+                    <div class="recommendation-list">
+                        ${generateSpecificRecommendations(data)}
+                    </div>
+                </div>
+            `;
+
+            // 养生食材推荐
+            html += `
+                <div class="recommendation-section">
+                    <h3>推荐养生食材</h3>
+                    <div class="recommendation-list">
+                        ${generateDietaryRecommendations(data)}
+                    </div>
+                </div>
+            `;
+
+            // 参考资料
+            html += `
+                <div class="references">
+                    <h3>参考资料</h3>
+                    <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6523837/" target="_blank">1. Traditional Chinese Medicine and Modern Health Maintenance</a>
+                    <a href="https://www.sleepfoundation.org/sleep-aids/traditional-chinese-medicine-for-sleep" target="_blank">2. Traditional Chinese Medicine Approaches to Sleep</a>
+                    <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7490104/" target="_blank">3. Preventive and Therapeutic Roles of Traditional Chinese Medicine</a>
+                </div>
+            `;
+
+            return html;
+        }
+
+        // 生成基础建议
+        function generateBasicRecommendations(data) {
+            let html = '<div class="recommendation-item">';
+            
+            // 基于年龄的基础建议
+            const ageRecommendations = {
+                '18-25': {
+                    title: '年轻阶段养生要点',
+                    tips: [
+                        '建立规律的作息时间，避免熬夜，保证7-8小时充足睡眠',
+                        '每周进行3-4次有氧运动，每次30-40分钟',
+                        '注意饮食均衡，多吃蔬果，补充优质蛋白',
+                        '保持良好作息，不要过度依赖咖啡因',
+                        '工作学习之余要注意运动，避免久坐'
+                    ]
+                },
+                '26-35': {
+                    title: '青年养生重点',
+                    tips: [
+                        '注意工作与休息平衡，预防职业病',
+                        '每天保证半小时以上的运动时间',
+                        '注意眼睛保养，每隔一小时眺望远处',
+                        '适当补充维生素和矿物质',
+                        '保持心理健康，学会减压'
+                    ]
+                },
+                // ... 其他年龄段
+            };
+
+            const ageGroup = ageRecommendations[data.age] || {
+                title: '通用养生建议',
+                tips: [
+                    '保持规律作息，注意作息平衡',
+                    '坚持适度运动，增强体质',
+                    '均衡饮食，注意营养搭配',
+                    '保持良好心态，避免压力过大'
+                ]
+            };
+
+            html += `
+                <h4>${ageGroup.title}</h4>
+                <ul>
+                    ${ageGroup.tips.map(tip => `<li>${tip}</li>`).join('')}
+                </ul>
+            </div>`;
+
+            return html;
+        }
+
+        // 生成针对性建议
+        function generateSpecificRecommendations(data) {
+            let html = '';
+
+            // 睡眠建议
+            if (data.sleep === 'poor' || data.sleep === 'very-poor') {
+                html += `
+                <div class="recommendation-item">
+                    <h4>改善睡眠的调理方案</h4>
+                    <ul>
+                        <li>建议服用安神茶饮：酸枣仁、柏子仁、百合等</li>
+                        <li>睡前1小时避免使用电子设备，保持安静的睡眠环境</li>
+                        <li>睡前泡脚15-20分钟，水温40-42度</li>
+                        <li>按摩穴位：太阳穴、百会穴、涌泉穴</li>
+                        <li>建议晚上10点前入睡，保持规律作息</li>
+                    </ul>
+                </div>`;
+            }
+
+            // 健康问题的具体建议
+            if (data.health.includes('hypertension')) {
+                html += `
+                <div class="recommendation-item">
+                    <h4>高血压调理建议</h4>
+                    <ul>
+                        <li>控制饮食盐分，每日盐摄入量不超过6克</li>
+                        <li>建议食用：菊花茶、决明子茶、山楂</li>
+                        <li>适量运动：每天快走30分钟</li>
+                        <li>保持心情舒畅，避免情绪波动</li>
+                        <li>定期监测血压，保持记录</li>
+                    </ul>
+                </div>`;
+            }
+
+            // 添加更多健康问题的建议...
+
+            return html || '<div class="recommendation-item"><p>根据您的情况，暂无特殊调理建议。</p></div>';
+        }
+
+        // 生成饮食建议
+        function generateDietaryRecommendations(data) {
+            let html = '<div class="recommendation-item">';
+            
+            // 基于饮食习惯的建议
+            const dietaryAdvice = {
+                'very-heavy': {
+                    title: '重口味饮食调理建议',
+                    foods: [
+                        '山楂：帮助消化，降低油腻',
+                        '陈皮：理气健脾，助消化',
+                        '绿茶：清热解腻',
+                        '薄荷：清凉解腻',
+                        '莲子：健脾养胃'
+                    ],
+                    tips: [
+                        '逐步减少调味料的使用',
+                        '多食用清淡蔬菜',
+                        '注意细嚼慢咽',
+                        '餐后适当运动'
+                    ]
+                },
+                'very-light': {
+                    title: '清淡饮食调养建议',
+                    foods: [
+                        '党参：补气健脾',
+                        '红枣：补血养胃',
+                        '枸杞：滋补养生',
+                        '山药：健脾养胃',
+                        '当归：补血调气'
+                    ],
+                    tips: [
+                        '适当增加营养摄入',
+                        '注意蛋白质的补充',
+                        '可以适量食用温补食材'
+                    ]
+                }
+                // ... 其他饮食习惯
+            };
+
+            const dietAdvice = dietaryAdvice[data.diet] || {
+                title: '均衡饮食建议',
+                foods: [
+                    '五谷杂粮：补充膳食纤维',
+                    '时令蔬果：补充维生素',
+                    '适量肉类：补充蛋白质',
+                    '豆制品：补充植物蛋白'
+                ],
+                tips: [
+                    '注意饮食均衡',
+                    '规律进餐',
+                    '细嚼慢咽'
+                ]
+            };
+
+            html += `
+                <h4>${dietAdvice.title}</h4>
+                <p>推荐食材：</p>
+                <ul>
+                    ${dietAdvice.foods.map(food => `<li>${food}</li>`).join('')}
+                </ul>
+                <p>饮食建议：</p>
+                <ul>
+                    ${dietAdvice.tips.map(tip => `<li>${tip}</li>`).join('')}
+                </ul>
+            </div>`;
+
+            // 添加AI搜索建议
+            html += `
+            <div class="recommendation-item">
+                <h4>更多养生资讯</h4>
+                <p>您可以通过以下链接了解更多相关信息：</p>
+                <ul>
+                    <li><a href="https://www.google.com/search?q=${encodeURIComponent('中医养生 ' + dietAdvice.title)}" target="_blank">查看相关养生文章</a></li>
+                    <li><a href="https://www.youtube.com/results?search_query=${encodeURIComponent('养生保健 ' + dietAdvice.title)}" target="_blank">观看相关视频教程</a></li>
+                </ul>
+            </div>`;
+
+            return html;
+        }
+    </script>
+</body>
+</html> 

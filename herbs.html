@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>药材宝典 - Herbal Life</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="https://cdn-icons-png.flaticon.com/512/2515/2515183.png" alt="Herbal Life Logo" class="logo">
+            <h1>Herbal Life</h1>
+        </div>
+        <div class="nav-container">
+            <div class="language-selector">
+                <button class="language-btn">
+                    <svg viewBox="0 0 24 24" width="18" height="18">
+                        <path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/>
+                    </svg>
+                    <span class="current-lang">中文</span>
+                    <svg class="arrow-icon" viewBox="0 0 24 24" width="18" height="18">
+                        <path fill="currentColor" d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </button>
+                <div class="language-dropdown">
+                    <a href="?lang=zh" class="lang-option active">
+                        <span class="lang-name">中文</span>
+                        <span class="lang-code">ZH</span>
+                    </a>
+                    <a href="?lang=en" class="lang-option">
+                        <span class="lang-name">English</span>
+                        <span class="lang-code">EN</span>
+                    </a>
+                    <a href="?lang=ms" class="lang-option">
+                        <span class="lang-name">Bahasa Melayu</span>
+                        <span class="lang-code">MS</span>
+                    </a>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="./index.html">首页</a></li>
+                    <li><a href="personalized.html">个性化方案</a></li>
+                    <li><a href="./herbs.html" class="active">药材宝典</a></li>
+                    <li><a href="health_knowledge.html">养生知识</a></li>
+                    <li><a href="./health_tracking.html">健康跟踪</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="search-container">
+            <div class="gcse-search"></div>
+        </div>
+    </header>
+
+    <main>
+        <div class="herbs-container">
+            <h1>中药材宝典</h1>
+            
+            <div class="category-nav">
+                <button class="category-btn active" data-category="all">Herbal Directory</button>
+                <button class="category-btn" data-category="buqi">Qi Tonifying</button>
+                <button class="category-btn" data-category="buxue">Blood Nourishing</button>
+                <button class="category-btn" data-category="qingre">Heat Clearing</button>
+                <button class="category-btn" data-category="huoxue">Blood Activating</button>
+                <button class="category-btn" data-category="anshen">Mind Calming</button>
+                <button class="category-btn" data-category="runzao">Moistening</button>
+                <button class="category-btn" data-category="liqi">Qi Regulating</button>
+                <button class="category-btn" data-category="zhike">Cough Relief</button>
+            </div>
+
+            <div id="all" class="herb-category active">
+                <div class="category-header">
+                    <h2>All Herbs</h2>
+                </div>
+                <div class="herb-list">
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Lilium_brownii" class="herb-link"><h3>Chinese Lily</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Mentha" class="herb-link"><h3>Peppermint</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Pulsatilla_chinensis" class="herb-link"><h3>Chinese Anemone</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Stemona_japonica" class="herb-link"><h3>Stemona Root</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Dolichos_lablab" class="herb-link"><h3>Hyacinth Bean</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Pueraria_montana" class="herb-link"><h3>Kudzu Root</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Salvia_miltiorrhiza" class="herb-link"><h3>Red Sage</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Codonopsis_pilosula" class="herb-link"><h3>Codonopsis Root</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Angelica_sinensis" class="herb-link"><h3>Dong Quai</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Rheum_officinale" class="herb-link"><h3>Chinese Rhubarb</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Rehmannia" class="herb-link"><h3>Rehmannia Root</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Amomum" class="herb-link"><h3>Cardamom</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Isatis_indigotica" class="herb-link"><h3>Isatis Leaf</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Eucommia_ulmoides" class="herb-link"><h3>Hardy Rubber Tree</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Lophatherum_gracile" class="herb-link"><h3>Bamboo Leaf</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Earthworm" class="herb-link"><h3>Earthworm</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Ophiopogon_japonicus" class="herb-link"><h3>Dwarf Lilyturf</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Paeonia_suffruticosa" class="herb-link"><h3>Tree Peony Bark</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Chaenomeles" class="herb-link"><h3>Flowering Quince</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Ephedra_sinica" class="herb-link"><h3>Ephedra</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Vitex_negundo" class="herb-link"><h3>Vitex Fruit</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Aucklandia_lappa" class="herb-link"><h3>Costus Root</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Schisandra_chinensis" class="herb-link"><h3>Five Flavor Berry</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Lycium_barbarum" class="herb-link"><h3>Goji Berry</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Gastrodia_elata" class="herb-link"><h3>Tall Gastrodia</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Chrysanthemum" class="herb-link"><h3>Chrysanthemum</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Wolfberry" class="herb-link"><h3>Wolfberry Root</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Cornus_officinalis" class="herb-link"><h3>Cornus Fruit</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Magnolia_officinalis" class="herb-link"><h3>Magnolia Bark</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Crataegus" class="herb-link"><h3>Hawthorn Fruit</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Polygonum_multiflorum" class="herb-link"><h3>He Shou Wu</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Ganoderma_lucidum" class="herb-link"><h3>Reishi Mushroom</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Cordyceps" class="herb-link"><h3>Cordyceps</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Houttuynia_cordata" class="herb-link"><h3>Fish Mint</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Forsythia_suspensa" class="herb-link"><h3>Forsythia</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Lonicera_japonica" class="herb-link"><h3>Japanese Honeysuckle</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Astragalus_propinquus" class="herb-link"><h3>Mongolian Milkvetch</h3></a></div>
+                </div>
+            </div>
+
+            <div id="buqi" class="herb-category">
+                <div class="category-header">
+                    <h2>Qi Tonifying Herbs</h2>
+                </div>
+                <div class="herb-list">
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Ginseng" class="herb-link"><h3>Ginseng</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Astragalus" class="herb-link"><h3>Astragalus</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/American_Ginseng" class="herb-link"><h3>American Ginseng</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Atractylodes" class="herb-link"><h3>White Atractylodes</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Codonopsis_pilosula" class="herb-link"><h3>Codonopsis</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Cordyceps" class="herb-link"><h3>Cordyceps</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Astragalus_propinquus" class="herb-link"><h3>Mongolian Milkvetch</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Ganoderma_lucidum" class="herb-link"><h3>Reishi Mushroom</h3></a></div>
+                </div>
+            </div>
+
+            <div id="buxue" class="herb-category">
+                <div class="category-header">
+                    <h2>Blood Nourishing Herbs</h2>
+                </div>
+                <div class="herb-list">
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Dong_Quai" class="herb-link"><h3>Dong Quai</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/White_Peony" class="herb-link"><h3>White Peony</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Prepared_Rehmannia" class="herb-link"><h3>Prepared Rehmannia</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Donkey-hide_Gelatin" class="herb-link"><h3>Donkey-hide Gelatin</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Polygonum_multiflorum" class="herb-link"><h3>He Shou Wu</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Lycium_barbarum" class="herb-link"><h3>Goji Berry</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Wolfberry" class="herb-link"><h3>Wolfberry Root</h3></a></div>
+                </div>
+            </div>
+
+            <div id="qingre" class="herb-category">
+                <div class="category-header">
+                    <h2>Heat Clearing Herbs</h2>
+                </div>
+                <div class="herb-list">
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Honeysuckle" class="herb-link"><h3>Honeysuckle</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Isatis_root" class="herb-link"><h3>Isatis Root</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Coptis_chinensis" class="herb-link"><h3>Chinese Goldthread</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Scutellaria_baicalensis" class="herb-link"><h3>Baical Skullcap</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Gardenia_jasminoides" class="herb-link"><h3>Gardenia</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Chrysanthemum" class="herb-link"><h3>Chrysanthemum</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Houttuynia_cordata" class="herb-link"><h3>Fish Mint</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Forsythia_suspensa" class="herb-link"><h3>Forsythia</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Lonicera_japonica" class="herb-link"><h3>Japanese Honeysuckle</h3></a></div>
+                </div>
+            </div>
+
+            <div id="huoxue" class="herb-category">
+                <div class="category-header">
+                    <h2>Blood Activating Herbs</h2>
+                </div>
+                <div class="herb-list">
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Ligusticum_striatum" class="herb-link"><h3>Szechuan Lovage</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Salvia_miltiorrhiza" class="herb-link"><h3>Red Sage</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Carthamus_tinctorius" class="herb-link"><h3>Safflower</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Leonurus_cardiaca" class="herb-link"><h3>Motherwort</h3></a></div>
+                </div>
+            </div>
+
+            <div id="anshen" class="herb-category">
+                <div class="category-header">
+                    <h2>Mind Calming Herbs</h2>
+                </div>
+                <div class="herb-list">
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Ziziphus_spinosa" class="herb-link"><h3>Sour Jujube Seed</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Poria" class="herb-link"><h3>Poria</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Polygala_tenuifolia" class="herb-link"><h3>Polygala Root</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Platycladus_orientalis" class="herb-link"><h3>Biota Seed</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Schisandra_chinensis" class="herb-link"><h3>Five Flavor Berry</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Gastrodia_elata" class="herb-link"><h3>Tall Gastrodia</h3></a></div>
+                </div>
+            </div>
+
+            <div id="runzao" class="herb-category">
+                <div class="category-header">
+                    <h2>Moistening Herbs</h2>
+                </div>
+                <div class="herb-list">
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Ophiopogon_japonicus" class="herb-link"><h3>Dwarf Lilyturf</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Polygonatum_odoratum" class="herb-link"><h3>Solomon's Seal</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Lilium_brownii" class="herb-link"><h3>Chinese Lily</h3></a></div>
+                </div>
+            </div>
+
+            <div id="liqi" class="herb-category">
+                <div class="category-header">
+                    <h2>Qi Regulating Herbs</h2>
+                </div>
+                <div class="herb-list">
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Citrus_reticulata" class="herb-link"><h3>Tangerine Peel</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Aucklandia_lappa" class="herb-link"><h3>Costus Root</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Cyperus_rotundus" class="herb-link"><h3>Nutgrass</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Magnolia_officinalis" class="herb-link"><h3>Magnolia Bark</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Crataegus" class="herb-link"><h3>Hawthorn Fruit</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Cornus_officinalis" class="herb-link"><h3>Cornus Fruit</h3></a></div>
+                </div>
+            </div>
+
+            <div id="zhike" class="herb-category">
+                <div class="category-header">
+                    <h2>Cough Relieving Herbs</h2>
+                </div>
+                <div class="herb-list">
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Ephedra_sinica" class="herb-link"><h3>Ephedra</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Prunus_armeniaca" class="herb-link"><h3>Bitter Apricot Kernel</h3></a></div>
+                    <div class="herb-item"><a href="https://en.wikipedia.org/wiki/Platycodon_grandiflorus" class="herb-link"><h3>Balloon Flower</h3></a></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/translations.js"></script>
+    <script src="script.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const categories = document.querySelectorAll('.herb-category');
+        const allCategory = document.getElementById('all');
+
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                categories.forEach(c => c.classList.remove('active'));
+
+                btn.classList.add('active');
+                const categoryId = btn.dataset.category;
+                if (categoryId === 'all') {
+                    allCategory.classList.add('active');
+                } else {
+                    document.getElementById(categoryId).classList.add('active');
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html> 

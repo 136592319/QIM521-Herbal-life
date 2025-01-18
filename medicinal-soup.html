@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicinal Soup Recipes - Herbal Life</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* 使用与其他文章相同的基础样式 */
+        .article-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        /* 添加食谱卡片样式 */
+        .recipe-card {
+            background: #F9F9F9;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .recipe-title {
+            color: #2E7D32;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .recipe-icon {
+            width: 24px;
+            height: 24px;
+            fill: #4CAF50;
+        }
+
+        .ingredients-list {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .steps-list {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+            counter-reset: step-counter;
+        }
+
+        .steps-list li {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .steps-list li::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: -5px;
+            top: 0;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .benefits-box {
+            background: #E8F5E9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .benefits-box h4 {
+            color: #2E7D32;
+            margin-bottom: 1rem;
+        }
+
+        .benefits-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .benefits-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .benefits-list li::before {
+            content: "•";
+            color: #4CAF50;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .season-tag {
+            background: #4CAF50;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- 使用相同的 header -->
+        <div class="logo-container">
+            <img src="https://cdn-icons-png.flaticon.com/512/2515/2515183.png" alt="Herbal Life Logo" class="logo">
+            <h1>Herbal Life</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="../personalized.html">个性化方案</a></li>
+                <li><a href="../herbs.html">药材宝典</a></li>
+                <li><a href="../health_knowledge.html">养生知识</a></li>
+                <li><a href="../health_tracking.html">健康跟踪</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="article-container">
+            <article>
+                <div class="article-header">
+                    <span class="article-tag">Medicinal Diet</span>
+                    <h1>Medicinal Soup Recipes</h1>
+                    <div class="article-meta">
+                        <span class="date">2024-01-18</span>
+                        <span class="author">Author: TCM Nutritionist</span>
+                    </div>
+                </div>
+
+                <div class="article-content">
+                    <h2>Nourishing Health Soups</h2>
+                    <h3>Black Chicken Ginseng Soup</h3>
+                    <div class="recipe-box">
+                        <div class="ingredients">
+                            <h4>Ingredients:</h4>
+                            <ul>
+                                <li>Black Chicken: 1 whole</li>
+                                <li>Ginseng: 10g</li>
+                                <li>Astragalus: 15g</li>
+                                <li>Red Dates: 5 pieces</li>
+                                <li>Goji Berries: 10g</li>
+                                <li>Ginger Slices: 3 pieces</li>
+                            </ul>
+                        </div>
+                        <div class="steps-list">
+                            <h4>Preparation Method:</h4>
+                            <ol>
+                                <li>Cut black chicken into pieces, blanch to remove impurities</li>
+                                <li>Clean ginseng and astragalus</li>
+                                <li>Add water to pot with chicken and ginger</li>
+                                <li>Add ginseng, astragalus, and red dates</li>
+                                <li>Bring to boil then simmer for 2 hours</li>
+                                <li>Add goji berries and salt to taste</li>
+                            </ol>
+                        </div>
+                        <div class="benefits-box">
+                            <h4>Benefits and Precautions:</h4>
+                            <ul class="benefits-list">
+                                <li>Strengthens qi and blood, boosts immunity</li>
+                                <li>Suitable for winter nourishment, improves weak constitution</li>
+                                <li>Helps with post-surgery and postpartum recovery</li>
+                                <li>Caution for those with hypertension or heart disease</li>
+                                <li>Avoid during cold or fever</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>Stomach-Strengthening Soup</h3>
+                    <div class="recipe-box">
+                        <div class="ingredients">
+                            <h4>Ingredients:</h4>
+                            <ul>
+                                <li>Chinese Yam: 200g</li>
+                                <li>Wild Yam: 100g</li>
+                                <li>Lotus Seeds: 50g</li>
+                                <li>White Hyacinth Beans: 30g</li>
+                                <li>Job's Tears: 50g</li>
+                            </ul>
+                        </div>
+                        <div class="steps-list">
+                            <h4>Preparation Method:</h4>
+                            <ol>
+                                <li>Soak all ingredients for 30 minutes</li>
+                                <li>Add appropriate amount of water to pot</li>
+                                <li>Add all ingredients and bring to boil</li>
+                                <li>Simmer on low heat for 1 hour</li>
+                                <li>Season with salt to taste</li>
+                            </ol>
+                        </div>
+                        <div class="benefits-box">
+                            <h4>Benefits and Suitable Groups:</h4>
+                            <ul class="benefits-list">
+                                <li>Strengthens spleen and stomach, improves digestion</li>
+                                <li>Suitable for weak digestion and poor appetite</li>
+                                <li>Helps with edema and dampness symptoms</li>
+                                <li>Good for chronic fatigue and qi deficiency</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>Immune-Boosting Mushroom Soup</h3>
+                    <div class="recipe-box">
+                        <div class="ingredients">
+                            <h4>Ingredients:</h4>
+                            <ul>
+                                <li>Reishi Mushroom: 20g</li>
+                                <li>Shiitake Mushroom: 100g</li>
+                                <li>White Wood Ear: 30g</li>
+                                <li>Dried Scallops: 2-3 pieces</li>
+                                <li>Chicken Breast: 200g</li>
+                                <li>Ginger: 3 slices</li>
+                                <li>Chinese Wolfberries: 15g</li>
+                            </ul>
+                        </div>
+                        <div class="steps-list">
+                            <h4>Preparation Method:</h4>
+                            <ol>
+                                <li>Soak mushrooms and wood ear until soft (about 30 minutes)</li>
+                                <li>Cut chicken breast into bite-sized pieces</li>
+                                <li>Bring water to boil, add ginger and dried scallops</li>
+                                <li>Add mushrooms and chicken, simmer for 1.5 hours</li>
+                                <li>Add wolfberries in the last 5 minutes</li>
+                                <li>Season with salt to taste</li>
+                            </ol>
+                        </div>
+                        <div class="benefits-box">
+                            <h4>Benefits and Suitable Groups:</h4>
+                            <ul class="benefits-list">
+                                <li>Enhances immune system function</li>
+                                <li>Improves sleep quality</li>
+                                <li>Good for respiratory health</li>
+                                <li>Suitable for those recovering from illness</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>Blood Nourishing Soup</h3>
+                    <div class="recipe-box">
+                        <div class="ingredients">
+                            <h4>Ingredients:</h4>
+                            <ul>
+                                <li>Dong Quai (Angelica): 10g</li>
+                                <li>Red Dates: 5-6 pieces</li>
+                                <li>Longan Fruit: 30g</li>
+                                <li>White Peony Root: 10g</li>
+                                <li>Pork Ribs: 300g</li>
+                                <li>Goji Berries: 15g</li>
+                            </ul>
+                        </div>
+                        <div class="steps-list">
+                            <h4>Preparation Method:</h4>
+                            <ol>
+                                <li>Blanch pork ribs to remove impurities</li>
+                                <li>Rinse all herbs under running water</li>
+                                <li>Place all ingredients except goji berries in pot</li>
+                                <li>Simmer on low heat for 2-3 hours</li>
+                                <li>Add goji berries in the last 10 minutes</li>
+                                <li>Season with salt if desired</li>
+                            </ol>
+                        </div>
+                        <div class="benefits-box">
+                            <h4>Benefits and Precautions:</h4>
+                            <ul class="benefits-list">
+                                <li>Nourishes blood and improves circulation</li>
+                                <li>Beneficial for women's health</li>
+                                <li>Helps with fatigue and dizziness</li>
+                                <li>Not recommended during menstruation</li>
+                                <li>Avoid if experiencing heat symptoms</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>Lung Nourishing Pear Soup</h3>
+                    <div class="recipe-box">
+                        <div class="ingredients">
+                            <h4>Ingredients:</h4>
+                            <ul>
+                                <li>Fresh Pear: 2 large</li>
+                                <li>Fritillaria Bulb: 10g</li>
+                                <li>Dried Fig: 30g</li>
+                                <li>Rock Sugar: to taste</li>
+                                <li>Almonds: 10g</li>
+                            </ul>
+                        </div>
+                        <div class="steps-list">
+                            <h4>Preparation Method:</h4>
+                            <ol>
+                                <li>Peel and core pears, cut into chunks</li>
+                                <li>Soak dried figs until soft</li>
+                                <li>Combine all ingredients in pot</li>
+                                <li>Add water and bring to boil</li>
+                                <li>Reduce heat and simmer for 45 minutes</li>
+                                <li>Add rock sugar to taste before serving</li>
+                            </ol>
+                        </div>
+                        <div class="benefits-box">
+                            <h4>Benefits and Suitable Groups:</h4>
+                            <ul class="benefits-list">
+                                <li>Moistens lungs and stops cough</li>
+                                <li>Good for dry throat and dry cough</li>
+                                <li>Suitable for autumn and winter seasons</li>
+                                <li>Safe for children and elderly</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+        </div>
+    </main>
+</body>
+</html> 

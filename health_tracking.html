@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Tracking - Herbal Life</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .tracking-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .tracking-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .food-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .food-item {
+            background: #E8F5E9;
+            padding: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .food-item:hover {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .food-item.selected {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .water-tracker {
+            display: flex;
+            gap: 0.8rem;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #E8F5E9;
+            border-radius: 12px;
+            justify-content: center;
+        }
+
+        .water-cup {
+            width: 32px;
+            height: 32px;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #4CAF50;
+        }
+
+        .water-cup:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
+        }
+
+        .water-cup.filled {
+            background: #4CAF50;
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.2);
+        }
+
+        .water-cup::before {
+            content: "💧";
+            font-size: 16px;
+            opacity: 0.5;
+        }
+
+        .water-cup.filled::before {
+            opacity: 1;
+            color: white;
+        }
+
+        .water-total {
+            text-align: center;
+            color: #2E7D32;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+
+        .exercise-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .exercise-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .submit-btn {
+            background: #4CAF50;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            width: 100%;
+        }
+
+        .ai-feedback {
+            background: #E8F5E9;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+            display: none;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .ai-feedback.active {
+            display: block;
+        }
+
+        .food-categories {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .food-category {
+            background: #F9F9F9;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .food-category h3 {
+            color: #2E7D32;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .food-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .food-categories {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .food-category {
+            background: #F5F5F5;
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+        
+        .food-groups {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .food-group h4 {
+            color: #2E7D32;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        .food-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 0.8rem;
+        }
+        
+        .food-select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #E8F5E9;
+            border-radius: 4px;
+            background: white;
+            min-height: 120px;
+        }
+        
+        .food-select option {
+            padding: 4px 8px;
+        }
+        
+        .food-select option:checked {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .water-hint {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .metric-card {
+            background: #F9F9F9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .metric-card h3 {
+            color: #2E7D32;
+            margin-bottom: 1rem;
+        }
+
+        .metric-input {
+            margin: 1rem 0;
+        }
+
+        .metric-input input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #E8F5E9;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+        }
+
+        .metric-input input:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+        }
+
+        .habit-card {
+            background: #F9F9F9;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .habit-card h3 {
+            color: #2E7D32;
+            margin-bottom: 1rem;
+        }
+
+        .report-card {
+            background: #F9F9F9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .report-card h3 {
+            color: #2E7D32;
+            margin-bottom: 1rem;
+        }
+
+        .metric-input select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #E8F5E9;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            background: white;
+            color: #333;
+        }
+        
+        .metric-input select:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+        }
+        
+        .metric-input label {
+            display: block;
+            margin-top: 1rem;
+            color: #2E7D32;
+            font-weight: 500;
+        }
+
+        .exercise-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .styled-select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #E8F5E9;
+            border-radius: 8px;
+            background: white;
+            color: #333;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234CAF50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 1em;
+            padding-right: 30px;
+        }
+        
+        .styled-select:hover {
+            border-color: #4CAF50;
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.1);
+        }
+        
+        .styled-select:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+        }
+        
+        .exercise-type label,
+        .exercise-duration label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2E7D32;
+            font-weight: 500;
+        }
+
+        .submit-section {
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid #E8F5E9;
+            margin-top: auto;
+        }
+        
+        .generate-btn {
+            background: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .generate-btn:hover {
+            background: #43A047;
+            transform: translateY(-2px);
+        }
+        
+        .ai-feedback {
+            background: #E8F5E9;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+            display: none;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .ai-feedback.active {
+            display: block;
+        }
+        
+        .ai-feedback h3 {
+            color: #2E7D32;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #4CAF50;
+        }
+        
+        #feedback-content {
+            line-height: 1.6;
+        }
+        
+        #feedback-content h3 {
+            color: #2E7D32;
+            margin: 1.5rem 0 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        #feedback-content p {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .meal-type {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .styled-select[multiple] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #E8F5E9;
+            border-radius: 8px;
+            background: white;
+            color: #333;
+            font-size: 0.95rem;
+            min-height: 150px;
+            overflow-y: auto;
+        }
+
+        .styled-select[multiple] option {
+            padding: 8px 12px;
+            margin: 2px 0;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .styled-select[multiple] option:checked {
+            background: #4CAF50 !important;
+            color: white;
+        }
+
+        .styled-select[multiple] option:hover {
+            background: #E8F5E9;
+        }
+
+        .food-categories {
+            margin-top: 1rem;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid #E8F5E9;
+        }
+
+        .date {
+            color: #888;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="https://cdn-icons-png.flaticon.com/512/2515/2515183.png" alt="Herbal Life Logo" class="logo">
+            <h1>Herbal Life</h1>
+        </div>
+        <div class="nav-container">
+            <div class="language-selector">
+                <button class="language-btn">
+                    <svg viewBox="0 0 24 24" width="18" height="18">
+                        <path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/>
+                    </svg>
+                    <span class="current-lang">中文</span>
+                    <svg class="arrow-icon" viewBox="0 0 24 24" width="18" height="18">
+                        <path fill="currentColor" d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </button>
+                <div class="language-dropdown">
+                    <a href="?lang=zh" class="lang-option active">
+                        <span class="lang-name">中文</span>
+                        <span class="lang-code">ZH</span>
+                    </a>
+                    <a href="?lang=en" class="lang-option">
+                        <span class="lang-name">English</span>
+                        <span class="lang-code">EN</span>
+                    </a>
+                    <a href="?lang=ms" class="lang-option">
+                        <span class="lang-name">Bahasa Melayu</span>
+                        <span class="lang-code">MS</span>
+                    </a>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="personalized.html">Personalized Plan</a></li>
+                    <li><a href="./herbs.html">Herbal Guide</a></li>
+                    <li><a href="health_knowledge.html">Health Knowledge</a></li>
+                    <li><a href="./health_tracking.html" class="active">Health Tracking</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="search-container">
+            <div class="gcse-search"></div>
+        </div>
+    </header>
+
+    <main>
+        <div class="tracking-container">
+            <div class="tracking-header">
+                <h1>Health Data Tracking</h1>
+                <p>Record and analyze your health data to help you monitor your health status</p>
+            </div>
+
+            <div class="tracking-section">
+                <h2>Basic Health Metrics</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h3>Weight Record</h3>
+                        <div class="metric-input">
+                            <label>Weight Range (kg):</label>
+                            <select class="weight-select">
+                                <option>Under 45</option>
+                                <option>45-50</option>
+                                <option>50-55</option>
+                                <option>55-60</option>
+                                <option>60-65</option>
+                                <option>65-70</option>
+                                <option>70-75</option>
+                                <option>75-80</option>
+                                <option>80-85</option>
+                                <option>85-90</option>
+                                <option>Above 90</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <h3>Blood Pressure Monitoring</h3>
+                        <div class="metric-input">
+                            <label>Systolic/Diastolic (mmHg):</label>
+                            <input type="text" placeholder="120/80">
+                        </div>
+                        <div class="metric-chart">
+                            <p>Blood Pressure Chart</p>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <h3>Sleep Quality</h3>
+                        <div class="metric-input">
+                            <label>Sleep Duration:</label>
+                            <select class="sleep-duration">
+                                <option>Less than 5 hours</option>
+                                <option>5-6 hours</option>
+                                <option>6-7 hours</option>
+                                <option>7-8 hours</option>
+                                <option>8-9 hours</option>
+                                <option>More than 9 hours</option>
+                            </select>
+                            <label>Sleep Quality:</label>
+                            <select class="sleep-quality">
+                                <option>Very Poor - Frequent waking</option>
+                                <option>Poor - Restless sleep</option>
+                                <option>Fair - Some interruptions</option>
+                                <option>Good - Mostly sound sleep</option>
+                                <option>Excellent - Deep, uninterrupted sleep</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tracking-section">
+                <h2>Habit Record</h2>
+                <div class="habits-grid">
+                    <div class="habit-card">
+                        <h3>Exercise Record</h3>
+                        <div class="habit-input">
+                            <div class="exercise-form">
+                                <div class="exercise-type">
+                                    <label>Exercise Type:</label>
+                                    <select class="styled-select">
+                                        <option>Walking</option>
+                                        <option>Running</option>
+                                        <option>Swimming</option>
+                                        <option>Yoga</option>
+                                        <option>Cycling</option>
+                                        <option>Tai Chi</option>
+                                        <option>Dancing</option>
+                                        <option>Strength Training</option>
+                                    </select>
+                                </div>
+                                <div class="exercise-duration">
+                                    <label>Duration:</label>
+                                    <select class="styled-select">
+                                        <option>Less than 15 mins</option>
+                                        <option>15-30 mins</option>
+                                        <option>30-45 mins</option>
+                                        <option>45-60 mins</option>
+                                        <option>60-90 mins</option>
+                                        <option>Over 90 mins</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="habit-card">
+                        <h3>Today's Diet Record</h3>
+                        <div class="food-categories">
+                            <div class="food-category">
+                                <h3>Meal Type</h3>
+                                <select class="styled-select meal-type">
+                                    <option>Breakfast</option>
+                                    <option>Lunch</option>
+                                    <option>Dinner</option>
+                                </select>
+                                <div class="food-groups">
+                                    <div class="food-group">
+                                        <h4>Grains & Carbs</h4>
+                                        <select class="styled-select" multiple>
+                                            <option>White Bread</option>
+                                            <option>Whole Wheat Bread</option>
+                                            <option>Oatmeal</option>
+                                            <option>Cornflakes</option>
+                                            <option>Pancakes</option>
+                                            <option>White Rice</option>
+                                            <option>Brown Rice</option>
+                                            <option>Noodles</option>
+                                            <option>Pasta</option>
+                                            <option>Quinoa</option>
+                                            <option>Rice Porridge</option>
+                                            <option>Steamed Buns</option>
+                                            <option>Sweet Potato</option>
+                                            <option>Bread</option>
+                                        </select>
+                                    </div>
+                                    <div class="food-group">
+                                        <h4>Protein</h4>
+                                        <select class="styled-select" multiple>
+                                            <option>Boiled Eggs</option>
+                                            <option>Scrambled Eggs</option>
+                                            <option>Chicken Breast</option>
+                                            <option>Fish</option>
+                                            <option>Beef</option>
+                                            <option>Pork</option>
+                                            <option>Tofu</option>
+                                            <option>Eggs</option>
+                                            <option>Shrimp</option>
+                                            <option>Salmon</option>
+                                            <option>Greek Yogurt</option>
+                                            <option>Cottage Cheese</option>
+                                            <option>Tuna</option>
+                                            <option>Beans</option>
+                                            <option>Lentils</option>
+                                        </select>
+                                    </div>
+                                    <div class="food-group">
+                                        <h4>Fruits & Vegetables</h4>
+                                        <select class="styled-select" multiple>
+                                            <option>Banana</option>
+                                            <option>Apple</option>
+                                            <option>Orange</option>
+                                            <option>Berries</option>
+                                            <option>Avocado</option>
+                                            <option>Broccoli</option>
+                                            <option>Spinach</option>
+                                            <option>Kale</option>
+                                            <option>Carrots</option>
+                                            <option>Bell Peppers</option>
+                                            <option>Cauliflower</option>
+                                            <option>Green Beans</option>
+                                            <option>Asparagus</option>
+                                            <option>Mushrooms</option>
+                                            <option>Zucchini</option>
+                                            <option>Eggplant</option>
+                                        </select>
+                                    </div>
+                                    <div class="food-group">
+                                        <h4>Drinks</h4>
+                                        <select class="styled-select" multiple>
+                                            <option>Water</option>
+                                            <option>Coffee</option>
+                                            <option>Black Tea</option>
+                                            <option>Green Tea</option>
+                                            <option>Milk</option>
+                                            <option>Soy Milk</option>
+                                            <option>Orange Juice</option>
+                                            <option>Apple Juice</option>
+                                            <option>Smoothie</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="habit-card">
+                        <h3>Water Intake</h3>
+                        <div class="habit-input">
+                            <p class="water-hint">Click cups to record water intake (1 cup = 250ml)</p>
+                            <div class="water-tracker">
+                                <div class="water-cup" data-amount="1"></div>
+                                <div class="water-cup" data-amount="2"></div>
+                                <div class="water-cup" data-amount="3"></div>
+                                <div class="water-cup" data-amount="4"></div>
+                                <div class="water-cup" data-amount="5"></div>
+                                <div class="water-cup" data-amount="6"></div>
+                                <div class="water-cup" data-amount="7"></div>
+                                <div class="water-cup" data-amount="8"></div>
+                            </div>
+                            <p class="water-total">Total: <span>0</span>ml</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tracking-section">
+                <h2>Health Report</h2>
+                <div class="report-grid">
+                    <div class="report-card">
+                        <h3>Weekly Summary</h3>
+                        <div class="report-content">
+                            <p>View your weekly health data analysis</p>
+                        </div>
+                    </div>
+
+                    <div class="report-card">
+                        <h3>Monthly Report</h3>
+                        <div class="report-content">
+                            <p>View your monthly health trend</p>
+                        </div>
+                    </div>
+
+                    <div class="report-card">
+                        <h3>Health Recommendations</h3>
+                        <div class="report-content">
+                            <p>Get personalized recommendations based on your data</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="submit-section">
+                <button class="generate-btn" onclick="generateFeedback()">Generate Health Recommendations</button>
+            </div>
+
+            <div class="ai-feedback">
+                <h3>Your Health Analysis</h3>
+                <div id="feedback-content"></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 食物选择
+        document.querySelectorAll('.food-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('selected');
+            });
+        });
+
+        // 饮水记录
+        document.querySelectorAll('.water-cup').forEach((cup, index) => {
+            cup.addEventListener('click', () => {
+                const totalSpan = document.querySelector('.water-total span');
+                document.querySelectorAll('.water-cup').forEach((c, i) => {
+                    if (i <= index) {
+                        c.classList.add('filled');
+                    } else {
+                        c.classList.remove('filled');
+                    }
+                });
+                // 更新总水量 (每杯250ml)
+                const totalMl = (index + 1) * 250;
+                totalSpan.textContent = totalMl;
+            });
+        });
+
+        // 生成反馈
+        function generateFeedback() {
+            const selectedFoods = Array.from(document.querySelectorAll('.food-item.selected')).map(item => item.textContent);
+            const waterCups = document.querySelectorAll('.water-cup.filled').length;
+            const exercises = Array.from(document.querySelectorAll('.exercise-item input:checked')).map(input => {
+                const duration = input.parentElement.querySelector('select').value;
+                return `${input.nextElementSibling.textContent}${duration}`;
+            });
+
+            // 将数据存储到 localStorage
+            const healthData = {
+                foods: selectedFoods,
+                water: waterCups,
+                exercises: exercises,
+                date: new Date().toISOString()
+            };
+            localStorage.setItem('healthTrackingData', JSON.stringify(healthData));
+
+            // 直接在页面显示反馈
+            let feedback = '';
+            
+            // 饮食评价
+            feedback += '<h3>Diet Analysis:</h3><p>';
+            const hasVegetables = selectedFoods.some(food => 
+                ['西兰花', '菠菜', '胡萝卜', '生菜', '番茄', '黄瓜', '茄子', '青椒', '白菜', '韭菜'].includes(food));
+            const hasProtein = selectedFoods.some(food => 
+                ['鸡胸肉', '鱼肉', '豆腐', '鸡蛋', '瘦猪肉', '牛肉', '虾', '鸭肉'].includes(food));
+            const hasGrain = selectedFoods.some(food => 
+                ['白米饭', '全麦面包', '燕麦', '馒头', '玉米', '红薯', '小米粥', '意大利面'].includes(food));
+            
+            if (hasVegetables && hasProtein && hasGrain) {
+                feedback += '🌟 Today\'s diet is very balanced! Includes carbohydrates, protein and vegetables.';
+            } else {
+                feedback += '💡 Please ensure a balanced diet, consider adding more';
+                if (!hasVegetables) feedback += 'vegetables, ';
+                if (!hasProtein) feedback += 'protein, ';
+                if (!hasGrain) feedback += 'whole grains, ';
+                feedback = feedback.slice(0, -2) + '.';
+            }
+            feedback += '</p>';
+
+            // 饮水评价
+            feedback += '<h3>Water Intake Analysis:</h3><p>';
+            if (waterCups === 0) {
+                feedback += '⚠️ No water intake recorded today, please remember to stay hydrated!';
+            } else if (waterCups < 4) {
+                feedback += '💧 Current water intake is low, recommend increasing to over 2000ml.';
+            } else if (waterCups >= 4 && waterCups < 6) {
+                feedback += '👍 Water intake meets target, keep it up!';
+            } else {
+                feedback += '🌟 Great water intake habits, staying hydrated is great for your health!';
+            }
+            feedback += '</p>';
+
+            // 运动评价
+            feedback += '<h3>Exercise Analysis:</h3><p>';
+            if (exercises.length === 0) {
+                feedback += '⚠️ No exercise recorded today, recommend maintaining daily moderate exercise.';
+            } else {
+                feedback += '👏 Great! Today you completed ' + exercises.join(', ') + '.';
+                if (exercises.some(e => e.includes('60 minutes'))) {
+                    feedback += '<br>🌟 Exercised for over an hour, excellent commitment!';
+                }
+            }
+            feedback += '</p>';
+
+            // 综合建议
+            feedback += '<h3>Overall Recommendations:</h3><p>';
+            const score = (selectedFoods.length > 0 ? 1 : 0) + (waterCups >= 4 ? 1 : 0) + (exercises.length > 0 ? 1 : 0);
+            if (score === 3) {
+                feedback += '🏆 Excellent health management today! Keep up these good habits.';
+            } else if (score === 2) {
+                feedback += '💪 Good overall performance, room for improvement, keep going!';
+            } else {
+                feedback += '🎯 Consider creating a balanced daily routine to develop healthy lifestyle habits.';
+            }
+            feedback += '</p>';
+
+            document.getElementById('feedback-content').innerHTML = feedback;
+            document.querySelector('.ai-feedback').classList.add('active');
+
+            // 平滑滚动到反馈区域
+            document.querySelector('.ai-feedback').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html> 
